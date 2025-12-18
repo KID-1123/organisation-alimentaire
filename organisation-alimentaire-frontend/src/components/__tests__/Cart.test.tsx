@@ -1,7 +1,9 @@
+import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { CartProvider } from "../../context/CartContext";
+
 import Cart from "../Cart";
+import { CartProvider } from "../../context/CartContext";
 
 describe("Cart component", () => {
   it("renders cart title", () => {
