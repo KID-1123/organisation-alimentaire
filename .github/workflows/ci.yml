@@ -2,12 +2,13 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   frontend-ci:
+    name: Frontend CI
     runs-on: ubuntu-latest
 
     steps:
@@ -19,6 +20,7 @@ jobs:
         with:
           node-version: 20
           cache: npm
+          cache-dependency-path: organisation-alimentaire-frontend/package-lock.json
 
       - name: Install dependencies
         run: npm ci
@@ -29,7 +31,7 @@ jobs:
         working-directory: organisation-alimentaire-frontend
 
       - name: Unit tests
-        run: npm test -- --run
+        run: npm run test:ci
         working-directory: organisation-alimentaire-frontend
 
       - name: Build
