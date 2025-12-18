@@ -1,93 +1,138 @@
-.shopping-container {
-  padding: 2rem;
-  padding-top: 100px; 
-  background-color: #f9f9f9;
+.menus-container {
+  padding: 100px 2rem 3rem;
   min-height: 100vh;
-  font-family: 'Segoe UI', sans-serif;
+  background-color: #121212;
+  color: #ffffff;
+  text-align: center;
+  font-family: "Segoe UI", sans-serif;
 }
 
-.shopping-container h2 {
-  font-size: 2rem;
+.menus-title {
+  font-size: 2.4rem;
   margin-bottom: 0.5rem;
-  color: #008060;
 }
 
-.intro-text {
+.menus-intro {
+  max-width: 900px;
+  margin: 0 auto 2.5rem;
   font-size: 1.1rem;
-  margin-bottom: 2rem;
-  color: #333;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
-.category-filters {
-  margin-bottom: 1.5rem;
+/* FILTRES */
+.menus-filters {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
 }
 
-.category-filters button {
-  padding: 0.6rem 1.2rem;
-  background-color: #008060;
+.menus-filters button {
+  padding: 0.6rem 1.5rem;
+  border-radius: 999px;
   border: none;
+  background-color: #1f1f1f;
   color: white;
-  border-radius: 5px;
   cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
+  transition: all 0.25s ease;
 }
 
-.category-filters button.active,
-.category-filters button:hover {
-  background-color: #00543b;
+.menus-filters button.active,
+.menus-filters button:hover {
+  background-color: #66d3ae;
+  color: black;
 }
 
-.shopping-table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: white;
-  border-radius: 10px;
+/* GRID */
+.menus-grid {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.5rem;
+}
+
+/* CARD = LINK */
+.menu-card {
+  position: relative;
+  height: 240px;
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  background: black;
+  text-decoration: none; /* important */
+  color: inherit;        /* important */
+  display: block;
 }
 
-.shopping-table th {
-  background-color: #008060;
-  color: white;
-  font-weight: 600;
+.menu-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+}
+
+.menu-card:hover img {
+  transform: scale(1.05);
+}
+
+/* OVERLAY */
+.menu-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.82),
+    rgba(0, 0, 0, 0.25)
+  );
   padding: 1rem;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
-.shopping-table td {
-  padding: 1rem;
-  border-bottom: 1px solid #eee;
-  text-align: center;
-  color: #333;
-  font-size: 1rem;
+.menu-overlay h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  color: #ffffff;
 }
 
-.shopping-table tr:hover {
-  background-color: #f0f0f0;
-}
-
-.delete-button {
-  background-color: crimson;
-  color: white;
+/* INGREDIENTS */
+.ingredients-btn {
+  background: transparent;
   border: none;
-  padding: 0.4rem 0.8rem;
-  border-radius: 5px;
-  cursor: pointer;
+  color: #66d3ae;
   font-size: 0.9rem;
-  transition: background-color 0.3s ease;
+  text-align: left;
+  cursor: pointer;
+  padding: 0;
 }
 
-.delete-button:hover {
-  background-color: darkred;
+.ingredients-list {
+  margin-top: 0.5rem;
+  list-style: none;
+  padding: 0;
+  font-size: 0.85rem;
+  color: white;
 }
-.no-results {
-  text-align: center;
-  font-style: italic;
-  color: #666;
-  margin-top: 2rem;
+
+.ingredients-list li {
+  margin-bottom: 0.2rem;
 }
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .menu-card {
+    height: 210px;
+  }
+}
+.ingredients-btn {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.ingredients-list,
+.ingredients-list li {
+  color: #ffffff;
+}
+

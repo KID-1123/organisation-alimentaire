@@ -1,67 +1,39 @@
-import { useEffect, useState } from "react";
-import api from "../services/api";
+import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import "./ShoppingList.css";
+import { MENUS, MenuCategory } from "../data/menusData";
 
-interface Aliment {
-  id: number;
-  nom: string;
-  categorie: string;
-  ajoute?: boolean;
-}
-
-// Liste des catégories proposées pour le filtrage
-const categories = [
+const categories: Array<"Tous" | MenuCategory> = [
   "Tous",
-  "Produits laitiers",
-  "Viande",
-  "Fruits",
-  "Légumes",
-  "Épicerie",
-  "Autre"
+  "Perte de poids",
+  "Prise de masse",
+  "Équilibré",
 ];
 
 const ShoppingList = () => {
-  const [items, setItems] = useState<Aliment[]>([]);
-  const [filter, setFilter] = useState<string>("Tous");
+  const [filter, setFilter] = useState<(typeof categories)[number]>("Tous");
+  const [openMenuId, setOpenMenuId] = useState<number | null>(null);
 
-  // Appel à l'API pour récupérer les aliments disponibles
-  const fetchItems = async () => {
-    try {
-      const res = await api.get<Aliment[]>("/inventaire");
-      setItems(res.data);
-    } catch (err) {
-      console.error("Erreur GET inventaire :", err);
-    }
+  const filteredMenus = useMemo(() => {
+    if (filter === "Tous") return MENUS;
+    return MENUS.filter((menu) => menu.category === filter);
+  }, [filter]);
+
+  const toggleIngredients = (id: number) => {
+    setOpenMenuId((prev) => (prev === id ? null : id));
   };
 
-  useEffect(() => {
-    fetchItems();
-  }, []);
-
-  // Filtrage dynamique selon la catégorie sélectionnée
-  const filteredItems =
-    filter === "Tous"
-      ? items
-      : items.filter((item) => item.categorie === filter);
-
   return (
-    <div className="shopping-container">
-      <h2>🛒 Liste des Courses</h2>
+    <div className="menus-container">
+      <h2 className="menus-title">🍽️ Menus YumGuard</h2>
 
-      <p className="intro-text">
-        Bienvenue sur votre assistant de courses personnalisé !<br />
-        📦 Cette page regroupe tous les produits que vous avez ajoutés à votre
-        liste d’achats.
-        <br />
-        🗂️ Vous pouvez facilement filtrer par catégorie(Fruits, Viande,
-        Épicerie, etc.) pour organiser vos achats.
-        <br />
-        Objectif : éviter les doublons, optimiser vos courses et gagner du
-        temps !
+      <p className="menus-intro">
+        Choisis ton objectif, explore nos plats et clique sur un menu pour voir
+        le détail.
       </p>
 
-      {/* Filtres de catégories */}
-      <div className="category-filters">
+      {/* FILTRES */}
+      <div className="menus-filters">
         {categories.map((cat) => (
           <button
             key={cat}
@@ -73,27 +45,42 @@ const ShoppingList = () => {
         ))}
       </div>
 
-      {/* Tableau des aliments filtrés */}
-      {filteredItems.length > 0 ? (
-        <table className="shopping-table">
-          <thead>
-            <tr>
-              <th>Nom du produit</th>
-              <th>Catégorie</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredItems.map((item) => (
-              <tr key={item.id}>
-                <td>{item.nom}</td>
-                <td>{item.categorie}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-        <p className="no-results">Aucun produit trouvé dans cette catégorie.</p>
-      )}
+      {/* GRID MENUS */}
+      <div className="menus-grid">
+        {filteredMenus.map((menu) => (
+          <Link
+            to={`/menus/${menu.id}`}
+            key={menu.id}
+            className="menu-card"
+          >
+            <img src={menu.image} alt={menu.title} />
+
+            <div className="menu-overlay">
+              <h3>{menu.title}</h3>
+
+              <button
+                className="ingredients-btn"
+                onClick={(e) => {
+                  e.preventDefault(); // empêche la navigation
+                  toggleIngredients(menu.id);
+                }}
+              >
+                {openMenuId === menu.id
+                  ? "Masquer les ingrédients"
+                  : `Voir les ingrédients (${menu.ingredients.length})`}
+              </button>
+
+              {openMenuId === menu.id && (
+                <ul className="ingredients-list">
+                  {menu.ingredients.map((ing, index) => (
+                    <li key={index}>• {ing}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };

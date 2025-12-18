@@ -5,7 +5,7 @@
   left: 0;
   width: 100%;
   z-index: 999;
-  background: rgba(0, 128, 96, 0.95);
+  background: rgba(12, 123, 95, 0.194);
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
@@ -79,4 +79,39 @@
 
 .logout-button:hover {
   background: #cc0000;
+}
+.cart-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 20px;
+  height: 20px;
+
+  background-color: white;   /* fond blanc */
+  color: #121212;            /* texte sombre */
+  border-radius: 6px;        /* carré arrondi */
+  padding: 0 6px;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  margin-left: 6px;
+}
+.cart-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 6px;
+
+  background-color: white;
+  color: black;
+
+  min-width: 18px;
+  height: 18px;
+  padding: 2px 6px;
+
+  border-radius: 6px; /* carré arrondi */
+  font-size: 0.75rem;
+  font-weight: 700;
 }
