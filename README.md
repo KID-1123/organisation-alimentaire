@@ -178,5 +178,5 @@ npm run build
 
 Ce projet a été construit et finalisé dans un temps limité, avec une volonté claire de respecter les exigences principales de l’exercice : qualité du code, tests, CI et application front-end exploitable.
 
-Une vidéo de démonstration sera fournie afin de faciliter la correction et de présenter visuellement le fonctionnement global de l’application.
+Une vidéo de démonstration sera fournie en fichier ZIP avec le devoir afin de faciliter la correction et de présenter visuellement le fonctionnement global de l’application.
 
