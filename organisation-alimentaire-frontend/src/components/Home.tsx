@@ -1,6 +1,7 @@
 import "./Home.css";
 
 import hero from "../assets/shutterstock_424476892-1613995069-hero.jpg";
+import { useState } from "react";
 
 import cover from "../assets/9d9d38d3-aa62-4b08-bf2a-f53fb81e7fed-cover.png";
 import collage from "../assets/Home_SupportImages_Meal-Collage_ba7b3fcf-68bb-4952-aea2-9920385ec6fa.webp";
@@ -20,6 +21,8 @@ import oip from "../assets/OIP.jpeg";
 import deco from "../assets/d2b05220-0e3a-4b1e-8210-b36ca328004f.png";
 
 const Home = () => {
+  const [isProgramsModalOpen, setIsProgramsModalOpen] = useState(false);
+
   return (
     <div className="home">
       {/* HERO */}
@@ -34,8 +37,10 @@ const Home = () => {
             </p>
 
             <div className="hero-actions">
-              <button className="btn btn-primary">Voir les programmes</button>
-              <button className="btn btn-ghost">Comment ça marche ?</button>
+            <button
+             className="btn btn-primary"
+               onClick={() => setIsProgramsModalOpen(true)} >Voir les programmes</button>      
+          <button className="btn btn-ghost">Comment ça marche ?</button>
             </div>
           </div>
         </div>
@@ -189,6 +194,57 @@ const Home = () => {
               <button className="btn btn-ghost">Voir un exemple de menu</button>
             </div>
           </div>
+          {isProgramsModalOpen && (
+  <div
+    className="programs-modal-overlay"
+    onClick={() => setIsProgramsModalOpen(false)}
+  >
+    <div
+      className="programs-modal"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <h2 className="modal-title">Nos programmes YumGuard</h2>
+
+      <p className="modal-text">
+        <strong>🔥 Perte de poids</strong><br />
+        Ce programme est pensé pour t’aider à perdre du poids durablement.
+        Les repas sont équilibrés, moins caloriques, riches en fibres et en
+        protéines afin de favoriser la satiété, limiter les fringales et
+        t’aider à garder une routine alimentaire stable sur le long terme.
+      </p>
+
+      <p className="modal-text">
+        <strong>💪 Prise de masse</strong><br />
+        Ce programme accompagne les entraînements intensifs. Il propose
+        des plats plus riches en calories, en protéines et en glucides
+        complexes pour soutenir la récupération musculaire et favoriser
+        la prise de masse de manière contrôlée.
+      </p>
+
+      <p className="modal-text">
+        <strong>🥗 Équilibre alimentaire</strong><br />
+        Idéal pour ceux qui veulent simplement mieux manger. Les repas
+        sont variés, équilibrés et pensés pour maintenir une bonne hygiène
+        de vie sans objectif strict de poids.
+      </p>
+
+      <p className="modal-text">
+        <strong>⚡ Sport & énergie</strong><br />
+        Pensé pour les personnes actives, ce programme aide à maintenir
+        un bon niveau d’énergie tout au long de la journée, optimiser
+        les performances sportives et améliorer la récupération.
+      </p>
+
+      <button
+        className="btn btn-ghost"
+        onClick={() => setIsProgramsModalOpen(false)}
+      >
+        Fermer
+      </button>
+    </div>
+  </div>
+)}
+
 
           <div className="cta-right">
             <img className="cta-img" src={deco} alt="Illustration" />

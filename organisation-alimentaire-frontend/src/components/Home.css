@@ -284,3 +284,37 @@
     height: 170px;
   }
 }
+
+
+/* ===== MODALE PROGRAMMES ===== */
+.programs-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+}
+
+.programs-modal {
+  background: #0e0e0e;
+  border-radius: 16px;
+  padding: 28px 24px;
+  width: 92%;
+  max-width: 650px;
+  text-align: center;
+}
+
+.modal-title {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  color: #ffffff;
+}
+
+.modal-text {
+  margin-bottom: 16px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #ffffff;
+}
