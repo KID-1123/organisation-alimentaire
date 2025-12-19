@@ -1,191 +1,182 @@
 
+# YumGuard – SHOP
 
+**Nom :** SEYE
+**Prénom :** Ousmane
+**Classe :** E4 WMD – ESTIAM
 
-# YUMGUARD – Organisation Alimentaire
+**Repository GitHub :**
+[https://github.com/KID-1123/organisation-alimentaire.git](https://github.com/KID-1123/organisation-alimentaire.git)
 
-Nom : SEYE
-Prénom : Ousmane
-Classe : E4 WMD – ESTIAM
-Repository GitHub : [https://github.com/KID-1123/organisation-alimentaire.git](https://github.com/KID-1123/organisation-alimentaire.git)
+**ID de connexion :** [test@yopmail.com](mailto:test@yopmail.com)
+**Mot de passe :** azerty123
 
-## Introduction et contexte
+## Contexte du projet
 
-Le projet YUMGUARD s’inscrit dans le cadre de l’exercice « My Shop – Production Ready ».
-L’objectif était de rendre une application front-end plus livrable et plus proche d’un contexte réel de production, en améliorant la qualité globale, l’expérience utilisateur, les tests unitaires et la mise en place d’une intégration continue.
+Ce projet s’inscrit dans le cadre de l’exercice **“My Shop”**, dont l’objectif est de transformer une application front-end existante en une application plus robuste, plus livrable et plus proche d’un contexte professionnel réel.
 
-Ce projet a été réalisé dans un temps limité, en parallèle de mon alternance, avec des contraintes personnelles importantes à gérer, notamment le renouvellement de mon titre de séjour qui avait expiré. Cela a nécessité de nombreux déplacements administratifs (mairie, démarches urgentes), ce qui a fortement réduit mon temps disponible pour le développement.
-Malgré cela, j’ai essayé de respecter au maximum les exigences demandées et d’implémenter les éléments essentiels attendus.
+Au cours du développement, le projet a été repris et restructuré afin de mieux répondre aux attentes pédagogiques. Le périmètre fonctionnel a évolué vers une application de vente de plats alimentaires équilibrés, organisée par objectifs nutritionnels (équilibre, perte de poids, prise de masse, etc.).
 
-Une vidéo de démonstration sera fournie afin de présenter le projet et ses fonctionnalités principales, notamment dans le cas où l’application ne fonctionnerait pas directement sur l’environnement de correction.
+Le développement a été réalisé dans un temps contraint, en parallèle d’une alternance, avec des contraintes personnelles importantes liées notamment au renouvellement de mon titre de séjour. Cette situation m’obligeait à effectuer des allers-retours constants à la préfecture, dans un contexte où il était difficile d’obtenir un rendez-vous. Malgré cela, j’ai fait le choix de prioriser la qualité globale du projet en mettant en place les éléments essentiels demandés : UX améliorée, tests unitaires, CI fonctionnelle et application front-end autonome.
 
-## Objectif global du projet
+Une vidéo de démonstration sera également fournie afin de présenter le fonctionnement de l’application, au cas où l’environnement local ne pourrait pas être lancé facilement.
 
-Transformer l’application en un front-end « production-ready » avec :
+## Objectif du projet
 
-* Une UX plus robuste (états de chargement, gestion des erreurs, navigation fiable)
-* Des tests unitaires obligatoires (logique métier et composants)
-* Une CI GitHub Actions exécutée sur les Pull Requests
-* Un fonctionnement possible sans backend réel grâce à un mock
-* Une structure claire et maintenable
+L’objectif principal de YumGuard est de proposer une application front-end de vente de plats équilibrés, permettant à un utilisateur de :
 
-## Présentation fonctionnelle
+* Parcourir un catalogue de plats organisés par programmes nutritionnels
+* Ajouter des plats à un panier
+* Passer une commande via un parcours de commande structuré
+* Consulter ses commandes
+* Visualiser des informations claires sur les prix, les totaux et le statut des commandes
 
-YUMGUARD est une application web destinée à aider les utilisateurs à mieux organiser leur alimentation quotidienne.
-Le projet repose sur plusieurs fonctionnalités principales :
+Le projet met l’accent sur :
 
-* Gestion de l’inventaire alimentaire
-* Gestion de la liste de courses
-* Suggestions de recettes basées sur les ingrédients disponibles
-* Conseils nutritionnels selon l’objectif de l’utilisateur
-* Authentification et navigation sécurisée
+* Une expérience utilisateur fluide et compréhensible
+* Une architecture front-end propre et testée
 
-## Architecture technique
+## Périmètre fonctionnel actuel
+
+### Catalogue de plats
+
+* Affichage des plats disponibles
+* Organisation par catégories et objectifs nutritionnels
+* Navigation claire entre les pages
+* États visuels gérés (chargement, absence de données)
+
+### Panier
+
+* Ajout et suppression de plats
+* Gestion des quantités
+* Calcul automatique des totaux
+* Badge panier mis à jour dynamiquement dans la navbar
+
+### Commande et paiement (mock)
+
+* Simulation d’un parcours de commande
+* Saisie d’une adresse de livraison
+* Sélection d’un moyen de paiement (mock)
+* Création d’une commande stockée localement
+
+### Commandes
+
+* Liste des commandes passées
+* Affichage des informations clés (date, adresse, paiement, total)
+* Gestion d’un statut de commande (en cours, livrée)
+* Possibilité de marquer une commande comme livrée
+
+## Choix techniques
 
 ### Frontend
 
-* Framework : React avec TypeScript
-* Build tool : Vite
-* Routage : React Router
-* Gestion d’état : Context API
-* Requêtes HTTP : Axios
-* Tests : Vitest + React Testing Library
-* Linting : ESLint
-* CI : GitHub Actions
+* React avec TypeScript
+* Vite comme outil de build
+* React Router pour la navigation
+* Context API pour la gestion d’état (panier, authentification)
+* Axios pour les appels API ou mocks
+* CSS dédié par composant
 
-### Backend
+### Tests
 
-Un backend NestJS existe dans le repository, mais le projet peut fonctionner sans backend actif grâce à des données mockées.
-Le frontend peut donc être lancé et testé de manière autonome.
+* Vitest comme framework de tests
+* React Testing Library pour les tests de composants
 
-## Fonctionnement sans backend
+Les tests unitaires couvrent :
 
-Oui, l’application peut être démarrée uniquement avec le frontend.
+* la logique métier (panier, services)
+* les selectors
+* les composants clés (Cart, Login)
 
-* Les appels API sont mockés
-* Les données (produits, inventaire, commandes, authentification) sont simulées
-* Cela permet au correcteur de lancer le projet sans configuration backend ni base de données
+Tous les tests passent en local et en CI.
 
-La vidéo de démonstration permet également de visualiser le comportement attendu si besoin.
+## Mock et backend
 
-## Expérience utilisateur (UX)
+L’application peut être lancée sans backend actif.
 
-Plusieurs améliorations ont été apportées :
+* Les données critiques (commandes, panier) sont simulées via le localStorage
+* Les appels API peuvent être mockés
+* Aucun serveur backend n’est requis pour tester le projet
 
-* États de chargement visibles lors des appels asynchrones
-* Gestion claire des erreurs avec messages lisibles
-* Navigation fiable entre les pages
-* Pages vides explicites lorsque les données sont absentes
-* Composants réutilisables et structure claire
-
-## Notifications globales
-
-Un mécanisme de notifications est présent dans le projet.
-Certaines notifications (toasts/messages) existaient déjà, notamment pour :
-
-* Les erreurs d’authentification
-* Les échecs de chargement
-* Les actions utilisateur invalides
-
-Le principe de notifications globales a été compris et intégré dans le projet via des messages centralisés déclenchés lors de certaines actions critiques.
-
-## Tests unitaires
-
-Les tests unitaires sont obligatoires et ont été implémentés avec Vitest.
-
-Tests couverts :
-
-* Logique métier (cart, selectors, services)
-* Composants React (rendu et comportement)
-* Contexts (CartContext, AuthContext)
-
-Les tests ne se limitent pas à « should render », ils vérifient des comportements réels.
-
-Commande pour lancer les tests :
-
-```bash
-npm test
-```
-
-Commande utilisée en CI :
-
-```bash
-npm run test:ci
-```
+Cela permet au correcteur de lancer et tester l’application uniquement avec le frontend.
 
 ## Intégration Continue (CI)
 
-Une GitHub Action est configurée dans `.github/workflows/ci.yml`.
+Une pipeline GitHub Actions est mise en place et s’exécute automatiquement sur les Pull Requests vers la branche `main`.
 
-Elle s’exécute automatiquement sur :
-
-* Push sur la branche main
-* Pull Request vers main
-
-Étapes du pipeline :
+La CI exécute :
 
 * Installation des dépendances
-* Lint du projet
-* Exécution des tests unitaires
-* Build du frontend
+* Lint du code
+* Tests unitaires
+* Build de l’application
 
-La CI échoue si l’une de ces étapes échoue.
+Toute erreur dans l’un de ces points bloque la validation de la Pull Request.
 
-## Installation et lancement du frontend
+## Installation du projet (Frontend uniquement)
 
-Prérequis :
+### Prérequis
 
 * Node.js version 18 ou supérieure
 * npm
 
-Installation :
+### Clonage du repository
 
 ```bash
-cd organisation-alimentaire-frontend
+git clone https://github.com/KID-1123/organisation-alimentaire.git
+cd organisation-alimentaire/organisation-alimentaire-frontend
+```
+
+### Installation des dépendances
+
+```bash
 npm install
 ```
 
-Lancement en mode développement :
+### Lancement en mode développement
 
 ```bash
 npm run dev
 ```
 
-Build du projet :
+L’application sera accessible par défaut à l’adresse suivante :
+[http://localhost:5173](http://localhost:5173)
+
+## Commandes utiles
+
+Lancer l’application :
 
 ```bash
-npm run build
+npm run dev
 ```
 
-Lint :
-
-```bash
-npm run lint
-```
-
-Tests :
+Lancer les tests :
 
 ```bash
 npm test
 ```
 
-## Comptes de test
+Lancer les tests pour la CI :
 
-Email : [test@yopmail.com](mailto:test@yopmail.com)
-Mot de passe : azerty123
+```bash
+npm run test:ci
+```
 
-## Contenu livré
+Lancer le lint :
 
-* Frontend fonctionnel
-* Tests unitaires
-* CI GitHub Actions opérationnelle
-* Données mockées pour un fonctionnement autonome
-* README détaillé
-* Vidéo de démonstration fournie séparément
+```bash
+npm run lint
+```
 
-## Conclusion
+Build de production :
 
-Ce projet représente une version « production-ready » du front-end demandée dans l’exercice, dans la limite du temps disponible.
-Les concepts essentiels ont été compris et appliqués : qualité du code, tests, CI, UX et structuration du projet.
+```bash
+npm run build
+```
 
-Malgré les contraintes personnelles et professionnelles rencontrées, j’ai essayé de livrer un projet cohérent, fonctionnel et conforme aux attentes pédagogiques.
+## Remarques finales
+
+Ce projet a été construit et finalisé dans un temps limité, avec une volonté claire de respecter les exigences principales de l’exercice : qualité du code, tests, CI et application front-end exploitable.
+
+Une vidéo de démonstration sera fournie afin de faciliter la correction et de présenter visuellement le fonctionnement global de l’application.
 
