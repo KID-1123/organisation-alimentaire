@@ -1,16 +1,17 @@
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import Home from './components/Home';
-import Inventory from './components/Inventory';
-import ShoppingList from './components/ShoppingList';
-import Suggestions from './components/Suggestions';
-import Navbar from './components/Navbar';
-import Login from './components/Login';
-import ProtectedRoute from './components/ProtectedRoute';
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+
+import Home from "./components/Home";
+import ShoppingList from "./components/ShoppingList";
+import MenuDetail from "./components/MenuDetail";
+import Cart from "./components/Cart";
+import PaymentInfo from "./components/PaymentInfo";
+import Confirmation from "./components/Confirmation";
+import Orders from "./components/Orders";
+import Navbar from "./components/Navbar";
+import Login from "./components/Login";
 
 function App() {
   const location = useLocation();
-
-  // Masquer la navbar uniquement sur la page de connexion
   const hideNavbar = location.pathname === "/login";
 
   return (
@@ -18,44 +19,31 @@ function App() {
       {!hideNavbar && <Navbar />}
 
       <Routes>
-        {/* Redirection de base vers /home */}
+        {/* Redirection par défaut */}
         <Route path="/" element={<Navigate to="/home" />} />
 
-        {/* Page d'accueil */}
+        {/* Pages publiques */}
         <Route path="/home" element={<Home />} />
-
-        {/* Page de connexion (publique) */}
         <Route path="/login" element={<Login />} />
 
-        {/* Inventaire (protégé) */}
-        <Route
-          path="/inventaire"
-          element={
-            <ProtectedRoute>
-              <Inventory />
-            </ProtectedRoute>
-          }
-        />
+        {/* Catalogue */}
+        <Route path="/courses" element={<ShoppingList />} />
+        <Route path="/menus/:id" element={<MenuDetail />} />
 
-        {/* Liste des courses (protégée) */}
-        <Route
-          path="/courses"
-          element={
-            <ProtectedRoute>
-              <ShoppingList />
-            </ProtectedRoute>
-          }
-        />
+        {/*  Panier */}
+        <Route path="/panier" element={<Cart />} />
 
-        {/* Suggestions de repas (protégée) */}
-        <Route
-          path="/suggestions"
-          element={
-            <ProtectedRoute>
-              <Suggestions />
-            </ProtectedRoute>
-          }
-        />
+        {/*  Informations de paiement */}
+        <Route path="/paiement" element={<PaymentInfo />} />
+
+        {/*  Confirmation */}
+        <Route path="/confirmation" element={<Confirmation />} />
+
+        {/*  Commandes */}
+        <Route path="/orders" element={<Orders />} />
+
+        {/* Sécurité */}
+        <Route path="*" element={<Navigate to="/home" />} />
       </Routes>
     </>
   );
